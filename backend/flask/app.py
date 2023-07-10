@@ -1,8 +1,4 @@
-"""
-  import required libraries
-  initialize flask app
-  set cors for app
-"""
+
 import os
 import requests
 from flask import Flask, request, jsonify
@@ -10,14 +6,14 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 
 # load env variables from .env file
-load_dotenv('./.env')
+load_dotenv('./dev.env')
 
 app = Flask(__name__)
 
 CORS(app)
 
 BASE_URL=os.environ.get('BASE_URL')
-# print('baseUrl',BASE_URL)
+
 
 @app.route('/', methods=['GET'])
 def health_check():

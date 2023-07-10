@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
         return res.status(200).json({
                 message: 'Okay',
+                status: 'success',
         });
 });
 
@@ -21,43 +22,49 @@ app.get('/', (req, res) => {
 app.get('/users', async (req, res) => {
         try {
                 const { status, data } = await axios.get(`${baseUrl}/users`);
+
                 if (status === 200) {
-                        return res.status(200).json({
+                        return res.status(status).json({
+                                code: status,
+                                status: 'success',
                                 data,
                         });
                 } else if (status !== 200) {
                         return res.status(status).json({
+                                code: status,
                                 data: null,
                         });
                 }
         } catch (error) {
-                console.log({ error });
-                return res.status(error?.response?.status).json({
+                const code = error?.response?.status;
+
+                return res.status(code).json({
+                        code,
                         data: null,
-                        error: error.message,
-                        code: error?.response?.status,
+                        error: error?.message,
                 });
         }
 });
 
 app.post('/users', async (req, res) => {
         try {
-                const { status, data, ...rest } = await axios.post(`${baseUrl}/users`, {
+                const { status, data } = await axios.post(`${baseUrl}/users`, {
                         ...req.body,
                 });
-                console.log({ rest });
 
                 if (status === 201) {
-                        return res.status(201).json({
-                                data,
-                        });
-                } else if (status !== 200) {
                         return res.status(status).json({
+                                code: status,
+                                data,
+                                status: 'success',
+                        });
+                } else if (status !== 201) {
+                        return res.status(status).json({
+                                code: status,
                                 data: null,
                         });
                 }
         } catch (error) {
-                console.log({ error });
                 return res.status(error?.response?.status).json({
                         data: null,
                         error: error.message,
@@ -66,4 +73,4 @@ app.post('/users', async (req, res) => {
         }
 });
 
-app.listen(PORT, () => console.log(`App listening on port 3000`));
+app.listen(PORT, () => console.log(`App listening on port: ${PORT}`));
