@@ -1,2 +1,3 @@
-# react-flask-app
-A full-stack react-flask  app
+# flask-backend-practice
+
+A backend flask RESTful service

@@ -8,7 +8,5 @@
 - Run `pip3 install requests`
 - Run `pip3 install flask-cors`
 
-#### other commands
-
 - Run `curl http://localhost:5000`
 - Run `python3 server.py`
