@@ -1,3 +1,3 @@
 # flask-user-api
 
-A CRUD Flask User API as learning project
+> A small Flask User API as learning project
