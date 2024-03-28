@@ -1,3 +1,3 @@
-# flask-user-api
+# flask-api
 
-> A small Flask User API as learning project
+> A tiny User API as learning project
