@@ -1,3 +1,3 @@
-# flask-api
+# flask-backend
 
-> A tiny User API as learning project
+> Practicing Python + Flask for backend development
